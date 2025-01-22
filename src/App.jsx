@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import Movies from "./pages/Movies";
 import Shows from "./pages/Shows";
 import TopRated from "./pages/Top-Rated";
+import MediaDetails from "./components/Media/MediaDetails/MediaDetails";
 
 import './styles/Media.css';
 import Games from "./pages/Games";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/tv-shows" element={<Shows />} />
         <Route path="/top-rated" element={<TopRated />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/details/:type/:id" element={<MediaDetails />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import ApiService from '../../services/apiServiceTMDB';
 import RawgApiService from '../../services/apiServiceRAWG';
 
@@ -8,6 +9,8 @@ export const MediaCard = ({
   isShow = false,
   isGame = false 
 }) => {
+  const navigate = useNavigate();
+
   const getImageUrl = () => {
     if (isGame) {
       return RawgApiService.getImageUrl(item.background_image) || 'image-not-available.jpg';
@@ -29,7 +32,6 @@ export const MediaCard = ({
   const getRating = () => {
     if (isGame) {
       if (!item.rating) return 'N/A';
-      // RAWG uses 5-star scale, multiply by 2 to match TMDB's 10-star scale
       return (item.rating * 2).toFixed(1);
     }
     return item.vote_average?.toFixed(1) || 'N/A';
@@ -46,6 +48,11 @@ export const MediaCard = ({
     return 'Movie';
   };
 
+  const handleLearnMore = () => {
+    const type = isGame ? 'game' : (isMovie ? 'movie' : 'show');
+    navigate(`/details/${type}/${item.id}`);
+  };
+
   return (
     <div className={`movie-card ${isGame ? 'game-card' : ''}`}>
       <div className="movie-poster">
@@ -57,7 +64,7 @@ export const MediaCard = ({
         <div className="movie-overlay">
           <span className="movie-rating">★ {getRating()}</span>
           <span className="media-type">{getMediaType()}</span>
-          <button className="watch-btn">Learn More</button>
+          <button className="watch-btn" onClick={handleLearnMore}>Learn More</button>
         </div>
       </div>
       <div className="movie-info">

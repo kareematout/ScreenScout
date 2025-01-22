@@ -1,0 +1,363 @@
+.details-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+.details-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  filter: blur(20px);
+}
+
+.details-backdrop::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.9) 50%,
+    #000 100%
+  );
+}
+
+.details-back-btn {
+  position: fixed;
+  top: calc(64px + 2rem); /* Assuming header height is 64px */
+  left: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #98ff98;
+  border-radius: 8px;
+  color: #98ff98;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.details-back-btn:hover {
+  background: rgba(152, 255, 152, 0.1);
+  transform: translateX(-5px);
+}
+
+.details-back-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.details-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 400px) 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+}
+
+/* Game-specific layout */
+.details-content-game {
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+}
+
+.details-image-container {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+/* Game-specific image container */
+.details-image-container-game {
+  position: relative;
+  top: 0;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.details-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+/* Game-specific image */
+.details-image-container-game .details-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.details-image:hover {
+  transform: scale(1.02);
+}
+
+.details-info {
+  padding-top: 1rem;
+}
+
+.details-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #98ff98;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 0 0 20px rgba(152, 255, 152, 0.2);
+}
+
+.details-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.details-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.details-meta-icon {
+  color: #98ff98;
+  width: 20px;
+  height: 20px;
+}
+
+.details-meta-label {
+  color: #98ff98;
+  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
+.details-section {
+  margin-bottom: 3rem;
+}
+
+.details-section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #98ff98;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.details-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background: #98ff98;
+  border-radius: 2px;
+}
+
+.details-overview {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.details-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.details-genre {
+  padding: 0.6rem 1.2rem;
+  background: rgba(152, 255, 152, 0.1);
+  border: 1px solid rgba(152, 255, 152, 0.2);
+  border-radius: 8px;
+  color: #98ff98;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.details-genre:hover {
+  background: rgba(152, 255, 152, 0.15);
+  transform: translateY(-2px);
+}
+
+.details-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  color: #98ff98;
+  font-size: 1.2rem;
+}
+
+.details-loading-icon {
+  width: 32px;
+  height: 32px;
+  animation: spin 1s linear infinite;
+}
+
+.details-error,
+.details-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.details-error h2,
+.details-not-found h2 {
+  color: #98ff98;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.details-error-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(152, 255, 152, 0.1);
+  border: 1px solid #98ff98;
+  border-radius: 8px;
+  color: #98ff98;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.details-error-btn:hover {
+  background: rgba(152, 255, 152, 0.15);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .details-content {
+    gap: 3rem;
+  }
+
+  .details-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .details-content:not(.details-content-game) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .details-image-container:not(.details-image-container-game) {
+    position: relative;
+    top: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .details-back-btn {
+    top: calc(56px + 1rem);
+    left: 1rem;
+  }
+
+  .details-content {
+    padding: 5rem 1.5rem 3rem;
+  }
+
+  .details-title {
+    font-size: 2rem;
+  }
+
+  .details-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .details-content {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .details-title {
+    font-size: 1.75rem;
+  }
+
+  .details-section-title {
+    font-size: 1.5rem;
+  }
+
+  .details-overview {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .details-genre {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .details-image-container-game {
+    padding-bottom: 66.67%; /* Slightly taller aspect ratio for mobile */
+  }
+
+  .details-meta-item {
+    font-size: 1rem;
+  }
+
+  .details-back-btn {
+    top: calc(56px + 0.75rem);
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  .details-container {
+    background-color: #000;
+  }
+
+  .details-backdrop::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.95) 50%,
+      #000 100%
+    );
+  }
+}
